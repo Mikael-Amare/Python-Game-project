@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 """
- Created by: Mr Coxall
- Created on: Sep 2020
+ Created by: Mikael Amare
+ Created on: May 2024
 This program is the "Space Aliens" program on the PyBadge
 """
 
@@ -15,7 +15,7 @@ def game_scene() -> None:
     This function is the main game game_scene
     """
     # image banks for CircuitPython
-    image_bank_background = stage.Bank.from_bmp16("my_sunshine_[MConverter.eu].bmp")
+    image_bank_background = stage.Bank.from_bmp16("space_aliens_background.bmp")
     # set the background to image 0 in the image bank
    
     # and the size (10x8 tiles of size 16x16)
@@ -36,4 +36,3 @@ def game_scene() -> None:
         pass # just a placeholder for now
 if __name__ == "__main__":
     game_scene()
-    
