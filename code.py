@@ -41,9 +41,9 @@ def game_scene() -> None:
         keys = ugame.buttons.get_pressed()
 
         if keys & ugame.K_X:
-            print("A")
-        if keys & ugame.K_O:
             print("B")
+        if keys & ugame.K_O:
+            print("A")
         if keys & ugame.K_START:
             print("Start")
         if keys & ugame.K_SELECT:
