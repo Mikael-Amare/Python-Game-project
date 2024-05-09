@@ -16,7 +16,7 @@ def game_scene() -> None:
     """
     # image banks for CircuitPython
     image_bank_background = stage.Bank.from_bmp16("space_aliens_background.bmp")
-    image_bank_sprites stage = Bank.from_bmp16("space_aliens.bmp")
+    image_bank_sprites = stage.Bank.from_bmp16("space_aliens.bmp")
     # set the background to image 0 in the image bank
    
     # and the size (10x8 tiles of size 16x16)
@@ -49,16 +49,23 @@ def game_scene() -> None:
         if keys & ugame.K_SELECT:
             print("Select")
         if keys & ugame.K_RIGHT:
-            ship.move(ship.x + 1, ship.y)
+            ship.move(ship.x + 2, ship.y)
         if keys & ugame.K_LEFT:
-            ship.move(ship.x - 1, ship.y)
+            ship.move(ship.x - 2, ship.y)
         if keys & ugame.K_UP:
-            ship.move(ship.x, ship.y - 1)
+            ship.move(ship.x, ship.y - 2)
         if keys & ugame.K_DOWN:
-            ship.move(ship.x, ship.y + 1)
-        
+            ship.move(ship.x, ship.y + 2)
+        if ship.x > 160:
+            ship.move(-16, ship.y)
+        elif ship.x < -16:
+            ship.move(160, ship.y)
+        if ship.y > 112:
+            ship.move(ship.x, 112)
+        elif ship.y < 0:
+            ship.move(ship.x, 0)
         # update game logic
-        
+
         # Redraw Sprite
         game.render_sprites([ship])
         game.tick() # wait until refresh rate finishes
