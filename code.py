@@ -56,14 +56,16 @@ def game_scene() -> None:
             ship.move(ship.x, ship.y - 2)
         if keys & ugame.K_DOWN:
             ship.move(ship.x, ship.y + 2)
+        # loops & restrictions
         if ship.x > 160:
-            ship.move(-16, ship.y)
+           ship.move(-16, ship.y)
         elif ship.x < -16:
-            ship.move(160, ship.y)
+           ship.move(160, ship.y)
         if ship.y > 112:
-            ship.move(ship.x, 112)
+           ship.move(ship.x, 112)
         elif ship.y < 0:
-            ship.move(ship.x, 0)
+           ship.move(ship.x, 0)
+
         # update game logic
 
         # Redraw Sprite
