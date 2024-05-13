@@ -53,7 +53,7 @@ def game_scene() -> None:
             else:
                 ship.move((ship.x + constants.SPRITE_MOVEMENT_SPEED), ship.y)
 
-        # loops & restrictions
+        # looping around the screen & restrictions
         if ship.x > 160:
            ship.move(-16, ship.y)
         elif ship.x < -16:
