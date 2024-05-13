@@ -6,6 +6,7 @@
 This program is the "Space Aliens" program on the PyBadge
 """
 
+import constants
 import stage
 import ugame
 
@@ -40,22 +41,18 @@ def game_scene() -> None:
         # get user input
         keys = ugame.buttons.get_pressed()
 
-        if keys & ugame.K_X:
-            print("B")
-        if keys & ugame.K_O:
-            print("A")
-        if keys & ugame.K_START:
-            print("Start")
-        if keys & ugame.K_SELECT:
-            print("Select")
-        if keys & ugame.K_RIGHT:
-            ship.move(ship.x + 2, ship.y)
-        if keys & ugame.K_LEFT:
-            ship.move(ship.x - 2, ship.y)
-        if keys & ugame.K_UP:
-            ship.move(ship.x, ship.y - 2)
-        if keys & ugame.K_DOWN:
-            ship.move(ship.x, ship.y + 2)
+        if keys & ugame.K_RIGHT != 0:
+            if ship.x < (constants.SCREEN_X - constants.SPRITE_SIZE):
+                ship.move((ship.x + constants.SPRITE_MOVEMENT_SPEED), ship.y)
+            else:
+                ship.move((constants.SCREEN_X - constants.SPRITE_SIZE), ship.y)
+
+        if keys & ugame.K_LEFT != 0:
+            if ship.x > 0:
+                ship.move((ship.x - constants.SPRITE_MOVEMENT_SPEED), ship.y)
+            else:
+                ship.move((ship.x + constants.SPRITE_MOVEMENT_SPEED), ship.y)
+
         # loops & restrictions
         if ship.x > 160:
            ship.move(-16, ship.y)
