@@ -18,8 +18,9 @@ def game_scene() -> None:
     # image banks for CircuitPython
     image_bank_background = stage.Bank.from_bmp16("space_aliens_background.bmp")
     image_bank_sprites = stage.Bank.from_bmp16("space_aliens.bmp")
+    # buttons that you wnat to keep state information on
+    a_button = constatns.button_state["button_up"]
     # set the background to image 0 in the image bank
-   
     # and the size (10x8 tiles of size 16x16)
     
     background = stage.Grid(image_bank_background, 10, 8)
@@ -52,16 +53,6 @@ def game_scene() -> None:
                 ship.move((ship.x - constants.SPRITE_MOVEMENT_SPEED), ship.y)
             else:
                 ship.move((ship.x + constants.SPRITE_MOVEMENT_SPEED), ship.y)
-
-        # looping around the screen & restrictions
-        if ship.x > 160:
-           ship.move(-16, ship.y)
-        elif ship.x < -16:
-           ship.move(160, ship.y)
-        if ship.y > 112:
-           ship.move(ship.x, 112)
-        elif ship.y < 0:
-           ship.move(ship.x, 0)
 
         # update game logic
 
