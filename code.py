@@ -32,13 +32,13 @@ def game_scene():
     sound.mute(False)
 
     # set the background to image 0 in the image bank
-    # and the size (10x8 tiles of size 16x16)
+    #   and the size (10x8 tiles of size 16x16)
     background = stage.Grid(image_bank_background, 10, 8)
 
     # a sprite that will be updated every frame
     ship = stage.Sprite(
         image_bank_sprites, 5, 75, constants.SCREEN_Y - (2 * constants.SPRITE_SIZE)
-    )
+   )
 
     alien = stage.Sprite(
         image_bank_sprites,
