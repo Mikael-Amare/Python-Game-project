@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Created by: Jakub Malhotra
+Created by: Mikael Amare
 Created on: May 2024
 This program is the "Space Aliens" program on the PyBadge
 """
