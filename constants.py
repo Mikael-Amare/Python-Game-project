@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Created by: Mikael Amare
+Created by: Jakub Malhotra
 Created on: May 2024
 This constants file is for Space Alien game
 """

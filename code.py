@@ -1,19 +1,52 @@
 #!/usr/bin/env python3
 
 """
-Created by: Mikael Amare
+Created by: Jakub Malhotra
 Created on: May 2024
 This program is the "Space Aliens" program on the PyBadge
 """
 
-import constants
-import stage
 import ugame
+import stage
+import random
+import time
+import constants
+
+def splash_scene():
+    # this function is the splash scene game loop
+
+    # get sound ready
+    coin_sound = open("coin.wav", 'rb')
+    sound = ugame.audio
+    sound.stop()
+    sound.mute(False)
+    sound.play(coin_sound)
+
+    # an image bank for CircuitPython
+    image_bank_mt_background = stage.Bank.from_bmp16("mt_game_studio.bmp")
+
+    # sets the background to image 0 in the image bank
+    background = stage.Grid(image_bank_mt_background, constants.SCREEN_X, constants.SCREEN_Y)
+
+    # create a stage for the background to show up on
+    # and set the frame rate to 60fps
+    game = stage.Stage(ugame.display, constants.FPS)
+
+    # set the layers, items show up in order
+    game.layers = [background]
+
+    # render the background and initial location of sprite list
+    game.render_block()
+
+    # repeat forever, game loop
+    while True:
+        # Wait for 1 second
+        time.sleep(1.0)
+        menu_scene()
+
 
 def menu_scene():
-    """
-    This function is the menu scene
-    """
+    # this function is the menu scene
 
     # image banks for CircuitPython
     image_bank_mt_background = stage.Bank.from_bmp16("mt_game_studio.bmp")
@@ -55,6 +88,7 @@ def menu_scene():
         # update game logic
         game.tick()  # wait until refresh rate finishes
 
+
 def game_scene():
     """
     This function is the main game game_scene
@@ -76,9 +110,12 @@ def game_scene():
     sound.stop()
     sound.mute(False)
 
-    # set the background to image 0 in the image bank
-    # and the size (10x8 tiles of size 16x16)
-    background = stage.Grid(image_bank_background, 10, 8)
+    # dynamically set the background to images and the size (10x8 tiles of size 16x16)
+    background = stage.Grid(image_bank_background, constants.SCREEN_X, constants.SCREEN_Y)
+    for x_location in range(constants.SCREEN_GRID_X):
+        for y_location in range(constants.SCREEN_GRID_Y):
+            tile_picked = random.randint(1, 3)
+            background.tile(x_location, y_location, tile_picked)
 
     # a sprite that will be updated every frame
     ship = stage.Sprite(
@@ -100,7 +137,6 @@ def game_scene():
     game.layers = [ship] + [alien] + [background]
 
     # render all sprites
-    # most likely you will only render the background once per game scene
     game.render_block()
 
     # repeat forever, game loop
@@ -144,4 +180,4 @@ def game_scene():
         game.tick()  # wait until refresh rate finishes
 
 if __name__ == "__main__":
-    menu_scene()
+    splash_scene()
