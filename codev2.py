@@ -121,7 +121,7 @@ def menu_scene():
 
 def game_scene():
     """
-    This function is the main game game_scene
+    This function is the main game scene
     """
 
     # image banks for CircuitPython
@@ -164,17 +164,11 @@ def game_scene():
         a_single_laser = stage.Sprite(image_bank_sprites, 10, constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
         lasers.append(a_single_laser)
 
-    # create a stage for the backgfround to show up on
-    #    and set the frame rate to 60fps
-    game = stage.Stage(ugame.display, 60)
-    # set the layers of all sprites, items show up in order
-    game.layers = lasers + [ship] + [alien] + [background]
     # create a stage for the background to show up on
-    # and set the frame rate to 60fps
-    game = stage.Stage(ugame.display, 60)
+    game = stage.Stage(ugame.display, constants.FPS)
 
     # set the layers of all sprites, items show up in order
-    game.layers = [ship] + [alien] + [background]
+    game.layers = lasers + [ship] + [alien] + [background]
 
     # render all sprites
     game.render_block()
@@ -214,19 +208,20 @@ def game_scene():
         # play a sound if A was just button_just_pressed
         if a_button == constants.button_state["button_just_pressed"]:
             # fire a laser, if we have enough power (have not used all the lasers)
-            for laser_number in range(len(lasers)):
-                if lasers[laser_number].x < 0:
-                    lasers[laser_number].move(ship.x, ship.y)
-                sound.play(pew_sound)
-                break
-        # each frame move the lasers, that have been fired up
-        for laser_number in range(len(lasers)):
-            if lasers[laser_number].x > 0:
-                lasers[laser_number].move(lasers[laser_number].x, lasers[laser_number].y - constants.LASER_SPEED)
-                if lasers[laser_number].y < constants.OFF_TOP_SCREEN:
-                    lasers[laser_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+            for laser in lasers:
+                if laser.x < 0:
+                    laser.move(ship.x + 5, ship.y)  # move laser to just in front of the ship
+                    sound.play(pew_sound)
+                    break
 
-        # redraw Sprite
+        # each frame move the lasers, that have been fired up
+        for laser in lasers:
+            if laser.x > 0:
+                laser.move(laser.x, laser.y - constants.LASER_SPEED)
+                if laser.y < constants.OFF_TOP_SCREEN:
+                    laser.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+
+        # redraw sprites
         game.render_sprites(lasers + [ship] + [alien])
         game.tick()  # wait until refresh rate finishes
 
