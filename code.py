@@ -121,7 +121,7 @@ def menu_scene():
 
 def game_scene():
     """
-    This function is the main game game_scene
+    This function is the main game_scene
     """
 
     # image banks for CircuitPython
@@ -164,17 +164,11 @@ def game_scene():
         a_single_laser = stage.Sprite(image_bank_sprites, 10, constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
         lasers.append(a_single_laser)
 
-    # create a stage for the backgfround to show up on
-    #    and set the frame rate to 60fps
-    game = stage.Stage(ugame.display, 60)
-    # set the layers of all sprites, items show up in order
-    game.layers = lasers + [ship] + [alien] + [background]
     # create a stage for the background to show up on
-    # and set the frame rate to 60fps
-    game = stage.Stage(ugame.display, 60)
+    game = stage.Stage(ugame.display, constants.FPS)
 
     # set the layers of all sprites, items show up in order
-    game.layers = [ship] + [alien] + [background]
+    game.layers = lasers + [ship] + [alien] + [background]
 
     # render all sprites
     game.render_block()
