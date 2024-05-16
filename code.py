@@ -121,7 +121,7 @@ def menu_scene():
 
 def game_scene():
     """
-    This function is the main game_scene
+    This function is the main game scene
     """
 
     # image banks for CircuitPython
@@ -220,7 +220,7 @@ def game_scene():
                 if lasers[laser_number].y < constants.OFF_TOP_SCREEN:
                     lasers[laser_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
 
-        # redraw Sprite
+        # redraw sprites
         game.render_sprites(lasers + [ship] + [alien])
         game.tick()  # wait until refresh rate finishes
 
