@@ -211,8 +211,8 @@ def game_scene():
             for laser_number in range(len(lasers)):
                 if lasers[laser_number].x < 0:
                     lasers[laser_number].move(ship.x, ship.y)
-                sound.play(pew_sound)
-                break
+                    sound.play(pew_sound)
+                    break
         # each frame move the lasers, that have been fired up
         for laser_number in range(len(lasers)):
             if lasers[laser_number].x > 0:
