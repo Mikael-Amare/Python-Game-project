@@ -13,9 +13,9 @@ import random
 
 
 def splash_scene():
-    coin_sound = open("coin.wav", "rb")
-    pew_sound = open("pew.wav", "rb")
-    boom_sound = open("boom.wav", "rb")
+    coin_sound = open("coin.wav", 'rb')
+    pew_sound = open("pew.wav", 'rb')
+    boom_sound = open("boom.wav", 'rb')
     sound = ugame.audio
     sound.stop()
     sound.mute(False)
@@ -31,7 +31,6 @@ def splash_scene():
     while True:
         time.sleep(2.0)
         menu_scene()
-
 
 def menu_scene():
     image_bank_mt_background = stage.Bank.from_bmp16("mt_game_studio.bmp")
@@ -90,7 +89,6 @@ def menu_scene():
 
         game.tick()
 
-
 def game_scene():
     # this function is the main game game_scene
 
@@ -109,7 +107,8 @@ def game_scene():
     start_button = constants.button_state["button_up"]
     select_button = constants.button_state["button_up"]
 
-    pew_sound = open("pew.wav", "rb")
+    pew_sound = open("pew.wav", 'rb')
+    boom_sound = open("boom.wav", 'rb')
     sound = ugame.audio
     sound.stop()
     sound.mute(False)
