@@ -8,14 +8,13 @@ This program is the "Space Aliens" program on the PyBadge
 import ugame
 import stage
 import time
+import supervisor
 import constants
 import random
 
 
 def splash_scene():
     coin_sound = open("coin.wav", 'rb')
-    pew_sound = open("pew.wav", 'rb')
-    boom_sound = open("boom.wav", 'rb')
     sound = ugame.audio
     sound.stop()
     sound.mute(False)
@@ -248,6 +247,19 @@ def game_scene():
         game.render_sprites(aliens + lasers + [ship])
         game.tick()  # wait until refresh rate finishes
 
+def game_over_scene(final_score):
+    # this function is the game ofver scen
+    # turn off sound from last scene
+    sound = ugame.audio
+    sound.stop()
+
+    # image banks for CircutPython
+    image_bank_2 = stage.Bank.from_bmp16("mt_game_studio.bmp")
+
+    # sets the background to image 0 in the image bank
+    bckground - stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+
+    # 
 
 if __name__ == "__main__":
     splash_scene()
