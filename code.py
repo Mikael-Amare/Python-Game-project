@@ -129,9 +129,19 @@ def game_scene():
         int(constants.SCREEN_X / 2 - constants.SPRITE_SIZE / 2),
         16,
     )
+    
     # for score
     alien_count = 0
 
+    score = 0
+
+    score_text = stage.Text(width=29, height=14, font=None, palette=constants.RED_PALETTE, buffer=None)
+    score_text.clear()
+    score_text.cursor(0,0)
+    score_text.move(1,1)
+    score_text.text("score: {0}".format(score))
+
+    # lasers(pew pew)
     lasers = []
     for laser_number in range(constants.TOTAL_NUMBER_OF_LASERS):
         a_single_laser = stage.Sprite(
@@ -148,10 +158,10 @@ def game_scene():
     show_alien()
 
     # create a stage for the background to show up on
-    # and set the frame rate to 60fps
+    #    and set the frame rate to 60fps
     game = stage.Stage(ugame.display, 60)
     # set the layers of all sprites, items show up in order
-    game.layers = aliens + lasers + [ship] + [background]
+    game.layers = [score_text] + aliens + lasers + [ship] + [background]
     # render all sprites
     # most likely you will only render the background once per game scene
     game.render_block()
@@ -204,6 +214,12 @@ def game_scene():
                 if aliens[alien_number].y > constants.SCREEN_Y:
                     aliens[alien_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
                     show_alien()
+                    if score > 0:
+                        score -= 1
+                    score_text.clear()
+                    score_text.cursor(0,0)
+                    score_text.move(1,1)
+                    score_text.text("Score: {0}".format(score))
 
 # each frame check if any of the lasers are touching any of the alien
         for laser_number in range(len(lasers)):
@@ -217,6 +233,12 @@ def game_scene():
                             # you hit an alien
                             aliens[alien_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
                             lasers[laser_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+                            # add 1 to the score
+                            score += 1
+                            score_text.clear()
+                            score_text.cursor(0,0)
+                            score_text.move(1,1)
+                            score_text.text("Score: {0}".format(score))
                             sound.stop()
                             sound.play(boom_sound)
                             show_alien()
