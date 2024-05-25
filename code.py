@@ -276,17 +276,17 @@ def game_over_scene(final_score):
     # add text objects
     text = []
     
-    text1 = stage.Text(width=29, height=14, font=None, palette=constants.BLUE_PALETTE, buffer=None, background=None)
+    text1 = stage.Text(width=29, height=14, font=None, palette=constants.BLUE_PALETTE, buffer=None)
     text1.move(22, 20)
     text1.text("Final Score: {:0>2d}".format(final_score))
     text.append(text1)
     
-    text2 = stage.Text(width=29, height=14, font=None, palette=constants.BLUE_PALETTE, buffer=None, background=None)
+    text2 = stage.Text(width=29, height=14, font=None, palette=constants.BLUE_PALETTE, buffer=None)
     text2.move(43, 60)
     text2.text("GAME OVER")
     text.append(text2)
 
-    text3 = stage.Text(width=29, height=14, font=None, palette=constants.BLUE_PALETTE, buffer=None, background=None)
+    text3 = stage.Text(width=29, height=14, font=None, palette=constants.BLUE_PALETTE, buffer=None)
     text3.move(32, 110)
     text3.text("PRESS SELECT")
     text.append(text3)
