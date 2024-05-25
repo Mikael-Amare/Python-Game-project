@@ -36,12 +36,12 @@ def menu_scene():
 
     text = []
 
-    text1 = stage.Text(width=29, height=12, font=None, palette=constants.BLUE_PALETTE, buffer=None)
+    text1 = stage.Text(width=29, height=12, font=None, palette=constants.RED_PALETTE, buffer=None)
     text1.move(20, 10)
     text1.text("MT Game Studios")
     text.append(text1)
 
-    text2 = stage.Text(width=29, height=12, font=None, palette=constants.BLUE_PALETTE, buffer=None)
+    text2 = stage.Text(width=29, height=12, font=None, palette=constants.RED_PALETTE, buffer=None)
     text2.move(40, 110)
     text2.text("PRESS START")
     text.append(text2)
@@ -135,7 +135,7 @@ def game_scene():
 
     score = 0
 
-    score_text = stage.Text(width=29, height=14, font=None, palette=constants.BLUE_PALETTE, buffer=None)
+    score_text = stage.Text(width=29, height=14, font=None, palette=constants.RED_PALETTE, buffer=None)
     score_text.clear()
     score_text.cursor(0,0)
     score_text.move(1,1)

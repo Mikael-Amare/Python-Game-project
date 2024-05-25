@@ -245,7 +245,7 @@ def game_scene():
                             show_alien()
                             alien_count = alien_count + 1
         # each frame check if any aliens are touching the space ship
-        for alien_number in range(len(alins)):
+        for alien_number in range(len(aliens)):
             if aliens[alien_number].x > 0:
                 if stage.collide(aliens[alien_number].x + 1, aliens [alien_number].y,
                                  aliens[alien_number].x + 15, aliens [alien_number].y + 15,
@@ -253,7 +253,7 @@ def game_scene():
                                  ship.x + 15, ship.y + 15):
                     # alien hit the ship
                     sound.stop()
-                    sound.plya(crash_sound)
+                    sound.play(crash_sound)
                     time.sleep(3.0)
                     game_over_scene(score)
         
@@ -271,10 +271,12 @@ def game_over_scene(final_score):
     image_bank_2 = stage.Bank.from_bmp16("mt_game_studio.bmp")
 
     # sets the background to image 0 in the image bank
-    bckground - stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+    bckground = stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
 
     # add text objects
     text = []
+
+    text1 = stage.Text(width=29, height=14, font=None, palette=constants.BLUE_PALETTE, buffer=None)
     text1.move(22, 20)
     text1.text("Final Score: {:0>2d}".format(final_score))
     text.append(text1)
@@ -313,5 +315,3 @@ def game_over_scene(final_score):
 
 if __name__ == "__main__":
     splash_scene()
-if __name__ == "__main__":
-    menu_scene()
