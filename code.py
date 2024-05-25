@@ -108,6 +108,7 @@ def game_scene():
 
     pew_sound = open("pew.wav", 'rb')
     boom_sound = open("boom.wav", 'rb')
+    crash_sound = open("crash.wav", 'rb')
     sound = ugame.audio
     sound.stop()
     sound.mute(False)
@@ -243,6 +244,19 @@ def game_scene():
                             show_alien()
                             show_alien()
                             alien_count = alien_count + 1
+        # each frame check if any aliens are touching the space ship
+        for alien_number in range(len(alins)):
+            if aliens[alien_number].x > 0:
+                if stage.collide(aliens[alien_number].x + 1, aliens [alien_number].y,
+                                 aliens[alien_number].x + 15, aliens [alien_number].y + 15,
+                                 ship.x, ship.y,
+                                 ship.x + 15, ship.y + 15):
+                    # alien hit the ship
+                    sound.stop()
+                    sound.plya(crash_sound)
+                    time.sleep(3.0)
+                    game_over_scene(score)
+        
         # redraw Sprite
         game.render_sprites(aliens + lasers + [ship])
         game.tick()  # wait until refresh rate finishes
